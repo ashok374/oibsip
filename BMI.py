@@ -22,15 +22,15 @@ def bmi_index(bmi):
     else:
         messagebox.showerror( 'something went wrong!')   
 
-ws = Tk()
-ws.title('PythonGuides')
-ws.geometry('400x300')
-ws.config(bg='#686e70')
+s = Tk()
+s.title('BMI CALCLUATOR')
+s.geometry('400x300')
+s.config(bg='#686e70')
 
 var = IntVar()
 
 frame = Frame(
-    ws,
+    s,
     padx=10, 
     pady=10
 )
@@ -90,4 +90,4 @@ cal_btn = Button(
 )
 cal_btn.pack(side=LEFT)
 
-ws.mainloop()
+s.mainloop()
