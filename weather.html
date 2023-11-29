@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.tblWeather
+{
+  width: 100%;
+}
+.tblWeather tr td{
+  padding: 20px 0px 10px 0px;
+}
+#btnReport{
+    cursor: pointer;
+    margin-left: 150px;
+    background: #ffffff;
+    border: 1px solid gray;
+    padding:6px;
+    border-radius: 5px;
+}
+#btnReport:hover{
+  background: #3366CC;
+  color: white;
+}
+.txtinp{
+  padding: 5px;
+  border-radius:5px;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+});
+
+ $(document).on("click","#btnReport",function(){
+ 
+   var cityname = $("#txtcityname").val();
+    var countryname = $("#txtcountryname").val();
+  
+    if(cityname.trim() == "")
+    {
+      alert("City name is required");
+      return;     
+    }
+    else if(countryname.trim() == "")
+    {
+      alert("Country name is required");
+      return;      
+    }  
+    var dataString = "access_key='8311350fe03a8f2f00945fc0770a5593'&query="+cityname+","+ countryname;
+
+    $.getJSON('http://api.weatherstack.com/current', dataString,function(jsondata){
+
+             var obj = jQuery.parseJSON(jsondata);
+             $(".divReport").html("Temperature is:" + obj.current.temperature);
+  
+     });
+ });
+</script>
+</head>
+<body>
+<table class='tblWeather'>
+<colgroup>
+<col style="width:25%"/>
+<col style="width:75%"/>
+</colgroup>
+<tr>
+<td>
+Enter city name
+</td>
+<td> 
+<input type='text' id='txtcityname' class='txtinp'/>
+</td>
+</tr>
+<tr>
+<td>
+Enter country name
+</td>
+<td>
+<input type='text' id='txtcountryname' class='txtinp'/>
+</td>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="button" value="Report" id="btnReport"/>
+</td>
+</tr>
+<tr>
+ <td colspan="2">
+  <div class='divReport'>
+  </div>
+ </td>
+</tr>
+</table>
+</body>
+</html>
